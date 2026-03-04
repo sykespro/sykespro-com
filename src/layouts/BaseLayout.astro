@@ -1,26 +1,28 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import { SITE_TITLE, SOCIAL_GITHUB, SOCIAL_LINKEDIN } from '../consts';
+import { SOCIAL_GITHUB, SOCIAL_LINKEDIN } from '../consts';
 
 interface Props {
   title: string;
   description: string;
+  /** Optional page-specific OG image path under public/. Defaults to /og-default.png. */
+  image?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, image } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} image={image} />
   </head>
   <body>
 
     <header class="site-header">
       <nav class="site-nav" aria-label="Main navigation">
-        <a href="/" class="site-nav__brand" aria-label={SITE_TITLE}>
+        <a href="/" class="site-nav__brand">
           <span class="site-nav__name">Daniel Sykes</span>
         </a>
         <ul class="site-nav__links" role="list">

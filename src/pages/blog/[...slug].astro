@@ -200,8 +200,8 @@ const formattedUpdated = updatedDate?.toLocaleDateString('en-GB', {
   }
 
   .post__body :global(pre) {
-    background-color: var(--color-surface-alt);
-    border: 1px solid var(--color-border);
+    /* Let Shiki's theme control background/color — overriding it breaks contrast ratios.
+       We only add layout: radius, padding, spacing, overflow. */
     border-radius: var(--radius-md);
     padding: 1.25rem 1.5rem;
     overflow-x: auto;

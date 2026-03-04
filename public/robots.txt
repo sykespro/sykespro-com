@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sykespro.com/sitemap-index.xml
