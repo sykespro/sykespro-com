@@ -1,0 +1,93 @@
+---
+// CallToAction — section-level CTA block
+
+interface Props {
+  heading: string;
+  body: string;
+  ctaText: string;
+  ctaHref: string;
+}
+
+const { heading, body, ctaText, ctaHref } = Astro.props;
+---
+
+<section class="cta">
+  <div class="cta__inner">
+    <div class="cta__copy">
+      <h2 class="cta__heading">{heading}</h2>
+      <p class="cta__body">{body}</p>
+    </div>
+    <a href={ctaHref} class="cta__btn">{ctaText}</a>
+  </div>
+</section>
+
+<style>
+  .cta {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2rem;
+  }
+
+  .cta__inner {
+    max-width: 52rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta__copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cta__heading {
+    font-size: clamp(1.25rem, 3vw, 1.625rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .cta__body {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+
+  .cta__btn {
+    display: inline-block;
+    flex-shrink: 0;
+    padding: 0.75rem 1.75rem;
+    background-color: #fff;
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: background-color 0.15s ease, transform 0.1s ease;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .cta__btn:hover {
+    background-color: #f0efff;
+    transform: translateY(-1px);
+  }
+
+  .cta__btn:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 600px) {
+    .cta__inner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

@@ -1,27 +1,55 @@
+/* Inter — variable weight, swap display */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Colors — semantic tokens; placeholder values, replaced during visual design */
-  --color-primary: #1a1a2e;
-  --color-surface: #ffffff;
-  --color-surface-alt: #f5f5f5;
-  --color-text: #1a1a1a;
-  --color-text-muted: #6b7280;
-  --color-border: #e5e7eb;
+  /* ── Color tokens ──────────────────────────────────────────────────
+     Palette: deep indigo primary on an off-white surface.
+     Signals confidence and precision without the generic gray-on-white
+     look of most developer blogs.
+  ── */
 
-  /* Typography */
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  /* Brand / accent */
+  --color-primary: #4338ca;        /* indigo-700 */
+  --color-primary-hover: #3730a3;  /* indigo-800 — slightly darker for hover */
+
+  /* Surfaces */
+  --color-surface: #fafafa;        /* near-white — warmer than pure white */
+  --color-surface-alt: #f1f0f7;    /* indigo-tinted off-white for code/panels */
+
+  /* Text */
+  --color-text: #18181b;           /* zinc-900 — deep, not pure black */
+  --color-text-muted: #52525b;     /* zinc-600 — secondary / meta */
+
+  /* Structure */
+  --color-border: #d4d2e8;         /* soft indigo-tinted border */
+
+  /* ── Typography ─────────────────────────────────────────────────── */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
 
-  /* Border radius */
+  /* ── Border radius ──────────────────────────────────────────────── */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
 }
 
-/* Screen-reader only utility (preserved for template compatibility) */
+/* Base typography wired to tokens */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Screen-reader only utility */
 .sr-only {
   border: 0;
   padding: 0;

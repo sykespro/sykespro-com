@@ -1,0 +1,133 @@
+---
+// Temporary design-system showcase — NOT a production page.
+// Remove before launch. Exists only to render all 5 components for visual review.
+import BlogCard from '../components/BlogCard.astro';
+import CallToAction from '../components/CallToAction.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import ContactForm from '../components/ContactForm.astro';
+import HeroSection from '../components/HeroSection.astro';
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design System Showcase — sykespro.com</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+
+    <!-- ── Section wrapper utility ─────────────────────────────── -->
+    <style>
+      .showcase-section {
+        max-width: 64rem;
+        margin: 0 auto;
+        padding: 3rem 1.5rem;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .showcase-section:last-child {
+        border-bottom: none;
+      }
+      .showcase-label {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-text-muted);
+        margin-bottom: 2rem;
+      }
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+        gap: 1.5rem;
+      }
+    </style>
+
+    <!-- 1 · HeroSection -->
+    <div class="showcase-section">
+      <p class="showcase-label">1 · HeroSection</p>
+      <HeroSection />
+    </div>
+
+    <!-- 2 · BlogCard -->
+    <div class="showcase-section">
+      <p class="showcase-label">2 · BlogCard</p>
+      <div class="card-grid">
+        <BlogCard
+          title="Why Most AI Integrations Fail at the Architecture Boundary"
+          description="The gap between a working prototype and a production-grade AI feature isn't a model problem — it's a systems design problem."
+          pubDate={new Date('2026-02-15')}
+          tags={['AI Architecture', 'Systems Thinking']}
+          slug="ai-integrations-architecture-boundary"
+        />
+        <BlogCard
+          title="On Trade-offs: The Framework I Use for Hard Engineering Decisions"
+          description="Every architectural decision is a trade-off. The question isn't which option is best — it's which constraints matter most."
+          pubDate={new Date('2026-01-28')}
+          tags={['Systems Thinking', 'Leadership & Career']}
+          slug="trade-offs-engineering-decisions"
+        />
+        <BlogCard
+          title="Evaluating LLM Outputs in Production: A Practical Approach"
+          description="Evals don't need to be perfect to be useful. Here's the minimum viable evaluation setup that actually catches regressions."
+          pubDate={new Date('2025-12-10')}
+          tags={['AI Architecture', 'Case Studies']}
+          slug="llm-eval-production"
+        />
+      </div>
+    </div>
+
+    <!-- 3 · CallToAction -->
+    <div class="showcase-section">
+      <p class="showcase-label">3 · CallToAction</p>
+      <CallToAction
+        heading="Working on something hard? Let's talk."
+        body="I take a small number of advisory engagements each year. If you're navigating a difficult AI or systems architecture decision, I'm happy to think through it with you."
+        ctaText="Get in touch"
+        ctaHref="/contact"
+      />
+    </div>
+
+    <!-- 4 · CodeBlock -->
+    <div class="showcase-section">
+      <p class="showcase-label">4 · CodeBlock</p>
+      <CodeBlock
+        lang="typescript"
+        code={`interface EvalResult {
+  input: string;
+  output: string;
+  score: number;    // 0–1
+  pass: boolean;
+}
+
+async function runEval(
+  model: LanguageModel,
+  testCases: TestCase[],
+): Promise<EvalResult[]> {
+  return Promise.all(
+    testCases.map(async (tc) => {
+      const output = await model.complete(tc.input);
+      const score = await scoreOutput(output, tc.expected);
+      return { input: tc.input, output, score, pass: score >= 0.8 };
+    }),
+  );
+}`}
+      />
+      <CodeBlock
+        lang="bash"
+        code={`# Run all evals against staging
+npx ts-node scripts/run-evals.ts --env staging --suite regression`}
+      />
+    </div>
+
+    <!-- 5 · ContactForm -->
+    <div class="showcase-section">
+      <p class="showcase-label">5 · ContactForm</p>
+      <ContactForm />
+    </div>
+
+  </body>
+</html>

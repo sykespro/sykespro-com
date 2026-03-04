@@ -1,0 +1,163 @@
+---
+// ContactForm — Netlify Forms contact form
+// netlify-honeypot="bot-field" provides spam protection
+// The hidden <form> in the head is required by Netlify to detect the form at build time
+---
+
+<!-- Netlify form detection (required for static sites) -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <textarea name="message"></textarea>
+</form>
+
+<section class="contact">
+  <div class="contact__inner">
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      class="contact__form"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+
+      <!-- Honeypot field — hidden from real users -->
+      <p class="contact__honeypot" aria-hidden="true">
+        <label>Don't fill this out: <input name="bot-field" /></label>
+      </p>
+
+      <div class="contact__field">
+        <label class="contact__label" for="cf-name">Name</label>
+        <input
+          id="cf-name"
+          class="contact__input"
+          type="text"
+          name="name"
+          autocomplete="name"
+          required
+          placeholder="Your name"
+        />
+      </div>
+
+      <div class="contact__field">
+        <label class="contact__label" for="cf-email">Email</label>
+        <input
+          id="cf-email"
+          class="contact__input"
+          type="email"
+          name="email"
+          autocomplete="email"
+          required
+          placeholder="you@example.com"
+        />
+      </div>
+
+      <div class="contact__field">
+        <label class="contact__label" for="cf-message">Message</label>
+        <textarea
+          id="cf-message"
+          class="contact__textarea"
+          name="message"
+          rows="6"
+          required
+          placeholder="What are you working on?"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="contact__submit">Send message</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 2rem 0;
+  }
+
+  .contact__inner {
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* Hide honeypot visually but keep in DOM for bots */
+  .contact__honeypot {
+    display: none;
+  }
+
+  .contact__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .contact__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: 0.01em;
+  }
+
+  .contact__input,
+  .contact__textarea {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 0.6875rem 0.875rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .contact__input::placeholder,
+  .contact__textarea::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.7;
+  }
+
+  .contact__input:focus,
+  .contact__textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.15);
+  }
+
+  .contact__textarea {
+    resize: vertical;
+    min-height: 9rem;
+    line-height: 1.6;
+  }
+
+  .contact__submit {
+    align-self: flex-start;
+    padding: 0.75rem 2rem;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+    letter-spacing: 0.01em;
+  }
+
+  .contact__submit:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-1px);
+  }
+
+  .contact__submit:active {
+    transform: translateY(0);
+  }
+</style>

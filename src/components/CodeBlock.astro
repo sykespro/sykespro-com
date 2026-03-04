@@ -1,0 +1,75 @@
+---
+// CodeBlock — syntax-highlighted code wrapper used in MDX posts
+// Astro's built-in Shiki integration handles the actual highlighting;
+// this component provides the styled container and language label.
+
+interface Props {
+  code: string;
+  lang?: string;
+}
+
+const { code, lang = 'text' } = Astro.props;
+---
+
+<div class="code-block">
+  {lang && lang !== 'text' && (
+    <span class="code-block__lang" aria-hidden="true">{lang}</span>
+  )}
+  <pre class="code-block__pre"><code class="code-block__code">{code}</code></pre>
+</div>
+
+<style>
+  .code-block {
+    position: relative;
+    background-color: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+
+  .code-block__lang {
+    display: block;
+    padding: 0.4rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    background-color: var(--color-surface-alt);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .code-block__pre {
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    background-color: var(--color-surface-alt);
+  }
+
+  .code-block__code {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    white-space: pre;
+  }
+
+  /* Scrollbar styling */
+  .code-block__pre::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .code-block__pre::-webkit-scrollbar-track {
+    background: var(--color-surface-alt);
+  }
+
+  .code-block__pre::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+</style>
