@@ -1,63 +1,165 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SOCIAL_GITHUB, SOCIAL_LINKEDIN } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
+<BaseLayout
+  title="About"
+  description="Daniel Sykes — senior AI and systems architect. About his work, background, and approach."
 >
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+  <div class="about">
+    <header class="about__header">
+      <h1 class="about__title">About</h1>
+    </header>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+    <div class="about__body">
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+      <section class="about__section">
+        <h2 class="about__section-title">Work</h2>
+        <p>
+          <!-- [TODO: replace with real bio — current role / org] -->
+          I'm a senior AI and systems architect working at the intersection of language model
+          integration, distributed systems design, and engineering leadership.
+        </p>
+        <p>
+          <!-- [TODO: replace with specific current focus areas / recent projects] -->
+          My current focus is on the architectural patterns and organisational structures that
+          make AI integration sustainable at scale — not the prototype stage, but the years after.
+        </p>
+      </section>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+      <section class="about__section">
+        <h2 class="about__section-title">Background</h2>
+        <p>
+          <!-- [TODO: replace with real background — years of experience, key roles, notable orgs] -->
+          I've spent the last decade designing and building systems that need to be right under
+          pressure — high-stakes, high-scale, with real consequences for failure. That experience
+          shapes how I think about architecture: every decision is a trade-off, and the trade-offs
+          that matter are the ones you don't see until production.
+        </p>
+      </section>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+      <section class="about__section">
+        <h2 class="about__section-title">This site</h2>
+        <p>
+          The blog is the primary thing here. I write about AI architecture, systems thinking,
+          and the leadership and organisational dimensions of technical work. The audience is
+          practitioners — people who have to make these decisions for real, not people learning
+          the concepts for the first time.
+        </p>
+        <p>
+          I don't write tutorials. I write about decisions, trade-offs, and the patterns that
+          recur across enough systems that they're worth naming.
+        </p>
+      </section>
+
+      <section class="about__section">
+        <h2 class="about__section-title">Advisory work</h2>
+        <p>
+          <!-- [TODO: replace with specific advisory terms / availability] -->
+          I take a small number of advisory engagements each year with engineering teams
+          navigating hard architectural decisions — particularly in AI integration and systems
+          design. If that sounds relevant,{' '}
+          <a href="/contact">get in touch</a>.
+        </p>
+      </section>
+
+      <section class="about__section about__links">
+        <h2 class="about__section-title">Find me</h2>
+        <ul class="about__link-list">
+          <li>
+            <a href={SOCIAL_LINKEDIN} target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href={SOCIAL_GITHUB} target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .about {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  .about__header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .about__title {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+
+  .about__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .about__section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    margin: 0 0 0.875rem;
+  }
+
+  .about__section p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-text);
+    margin: 0 0 1rem;
+  }
+
+  .about__section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .about__section a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-color: rgba(67, 56, 202, 0.4);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s ease;
+  }
+
+  .about__section a:hover {
+    text-decoration-color: var(--color-primary);
+  }
+
+  .about__link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .about__link-list a {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .about__link-list a:hover {
+    color: var(--color-primary-hover);
+  }
+</style>

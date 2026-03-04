@@ -1,0 +1,52 @@
+---
+title: "The Architecture Boundary Problem in AI Integration"
+description: "Most AI integrations fail not because the model is wrong, but because the system design around the model is wrong. Here's the pattern."
+pubDate: 2026-02-20
+tags: ["AI Architecture", "Systems Thinking"]
+draft: false
+---
+
+Most teams integrating LLMs into production systems encounter the same failure mode: the prototype works, the demo impresses, and then everything breaks at the seams where the AI meets the rest of the system.
+
+The model isn't the problem. The architecture boundary is.
+
+## What an architecture boundary actually means
+
+An architecture boundary is any point in a system where two distinct components meet — where data changes format, ownership changes hands, or operational characteristics diverge. Every boundary is a contract, whether you've written one down or not.
+
+In traditional systems, boundaries are relatively stable. An API contract changes infrequently; a database schema evolves deliberately. You can test the contract, version it, and roll it back.
+
+AI components violate these assumptions in three ways:
+
+1. **Output is probabilistic, not deterministic.** The same input won't always produce the same output. Retry logic that works for network errors doesn't work for semantic drift.
+
+2. **Failures are soft, not hard.** A broken SQL query throws an exception. A hallucinated response looks exactly like a correct one from the system's perspective. There's no exception to catch.
+
+3. **Latency and cost are runtime variables.** You can't amortize LLM call cost the way you amortize a database query. Context length, model tier, and retry behavior all change the economics in real time.
+
+## The common failure pattern
+
+The pattern I see most often: an LLM is inserted into an existing data flow without redesigning the boundary.
+
+```typescript
+// Before: deterministic transformation
+const result = parseStructuredData(rawInput);
+
+// After: probabilistic transformation — same boundary contract, different guarantees
+const result = await llm.complete(`Parse this: ${rawInput}`);
+processResult(result); // assumes the same guarantees as parseStructuredData
+```
+
+The calling code assumes the same guarantees it had before. It doesn't. The downstream `processResult` function was written expecting a structured, validated object. It now receives a string that _looks_ structured.
+
+## The fix isn't better prompting
+
+The instinct is to improve the prompt until the output is reliable enough. This is a local optimisation that delays the structural problem.
+
+The fix is to treat the AI component boundary explicitly:
+
+- **Define the output contract as a schema**, not a format string. Validate every response against it before it crosses the boundary.
+- **Build a translation layer** between the AI output and the downstream system. Don't let the LLM write directly into your domain model.
+- **Design for soft failure**. What does the system do when the AI output is valid JSON but semantically wrong? That case needs an explicit code path, not a silent pass-through.
+
+The boundary has to change. The rest of the system shouldn't have to.

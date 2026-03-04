@@ -1,0 +1,59 @@
+---
+title: "Constraints Are Design Input, Not Design Obstacles"
+description: "The most useful thing a constraint does is eliminate options you shouldn't be considering anyway. The problem is most engineers treat them as something to route around."
+pubDate: 2026-01-15
+tags: ["Systems Thinking", "Leadership & Career"]
+draft: false
+---
+
+There's a consistent pattern in how senior engineers approach constraints versus how less experienced engineers do. It's not that experienced engineers are better at working around constraints — it's that they've stopped trying to.
+
+Constraints aren't the obstacle to good design. They're part of the design input.
+
+## Two ways to read a constraint
+
+Say you're building a system and someone tells you: "We can't use a relational database — the team only has operational expertise with DynamoDB."
+
+One reading: this is a limitation. You'd prefer Postgres. You'd be faster with Postgres. The constraint is forcing you into an inferior choice.
+
+Another reading: this is a fact about the system. A system operated by a team without deep relational database expertise has a different failure profile than one operated by a team that does. That's real. The constraint isn't hiding it — it's surfacing it.
+
+The second reading doesn't mean you never push back. It means you understand what you're actually deciding before you start negotiating.
+
+## Constraints compress the decision space
+
+One of the most underrated functions of a constraint is what it eliminates.
+
+Good architecture involves making a large number of decisions with incomplete information. The hardest part isn't picking the right option — it's knowing which options are actually on the table. Constraints reduce the search space. A strict latency budget eliminates entire categories of architecture. A no-external-dependencies policy turns a complex dependency evaluation into a non-decision.
+
+This is why teams with more freedom don't always produce better architecture. More freedom means more decisions, more surface area, more coordination overhead. Well-chosen constraints can accelerate design by removing the problem of option evaluation.
+
+## The difference between productive and unproductive constraints
+
+Not all constraints are worth accepting.
+
+A productive constraint:
+- Reflects a real property of the system environment (team capability, operational context, cost structure)
+- Eliminates options that would create downstream problems
+- Can be explicitly stated and reasoned about
+
+An unproductive constraint:
+- Reflects historical accident, not current reality
+- Closes off options that are genuinely better given current context
+- Exists implicitly — no one can articulate why it exists
+
+The work is telling them apart, not treating all constraints as either sacred or suspect.
+
+## What this looks like in practice
+
+When I'm working through an architectural decision under constraint, the sequence is:
+
+1. State the constraint explicitly and check that it's real. "We can't use managed services" — is that a policy, a cost issue, a compliance requirement? The answer changes what it means.
+
+2. Understand what the constraint eliminates. Before you resent it, know what you're not having to decide.
+
+3. Design within it properly. Not minimum viable compliance — actually commit to the constraint as a design input. If you're designing for DynamoDB, design for DynamoDB. Don't design for Postgres and adapt it.
+
+4. Revisit if the constraint changes. Constraints have contexts. If the context shifts, the constraint is worth re-examining. But don't re-examine it at design time on the assumption it might change.
+
+Architecture that fights its constraints is fragile architecture. The constraints don't disappear — they just become invisible until they matter.

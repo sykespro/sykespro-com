@@ -9,5 +9,5 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
 	site: 'https://sykespro.com',
 	output: 'static',
-	integrations: [mdx(), sitemap(), tailwind()],
+	integrations: [mdx(), sitemap(), tailwind({ applyBaseStyles: false })],
 });

@@ -1,0 +1,71 @@
+---
+title: "Eval-Driven LLM Development"
+description: "You can't improve what you don't measure. For LLM-powered features, evals are the measurement layer — but most teams implement them too late and too narrowly."
+pubDate: 2025-12-08
+tags: ["AI Architecture", "Case Studies"]
+draft: false
+---
+
+Evals are to LLM development what tests are to traditional software development — except that unlike tests, most teams don't write them until something has already gone wrong.
+
+The result is a common and painful pattern: a feature works in development, degrades in production, and there's no instrumentation to explain why or detect when it started.
+
+## What an eval actually is
+
+An eval is a structured measurement of an LLM output against an expected quality standard. The standard can be:
+
+- **Deterministic**: the output matches a specific value or schema
+- **Heuristic**: the output satisfies a rule (length, format, presence of a key term)
+- **Model-graded**: a second LLM judges whether the output is good
+
+None of these is complete on its own. A useful eval suite uses all three.
+
+## The minimum viable eval setup
+
+For most production LLM features, you need at least:
+
+```typescript
+interface EvalCase {
+  input: string;
+  expectedOutput?: string;       // for exact-match cases
+  assertions: EvalAssertion[];   // heuristic checks
+}
+
+interface EvalAssertion {
+  type: 'contains' | 'not-contains' | 'matches-schema' | 'llm-grade';
+  value: unknown;
+}
+```
+
+Start narrow. For a summarisation feature, you might need:
+- Does the output contain no fabricated facts not present in the source? (model-graded)
+- Is the output shorter than the input? (heuristic)
+- Does the output match the expected JSON schema? (deterministic)
+
+That's a useful eval. It's not comprehensive. It's not supposed to be at first.
+
+## When to write evals
+
+The answer most teams want: after the feature ships.
+
+The answer that actually works: before the first prompt is written.
+
+Evals written before implementation define success. They expose ambiguity in requirements ("What does 'accurate' mean?") before the ambiguity is baked into a prompt that's now in production.
+
+The sequence that works in practice:
+
+1. Define the success criteria for the feature as measurable properties
+2. Write failing evals that capture those criteria
+3. Iterate on prompts until the evals pass
+4. Gate deployment on eval pass rate (not 100% — pick a threshold that reflects the risk tolerance)
+5. Run evals on every change to the prompt, context, or model
+
+## The regression trap
+
+The failure mode that makes evals worth writing: silent regression.
+
+LLM outputs change when you change the model version, the system prompt, the context window, the retrieval results, or the temperature. Some of those changes are intentional. Most regressions are not.
+
+Without evals, you find out about regressions from users. With evals, you find out before deployment. The difference is whether you're running toward problems or discovering them from behind.
+
+A passing eval suite on a changed prompt isn't a guarantee of quality. It's a lower bound on quality. That's exactly what you need.

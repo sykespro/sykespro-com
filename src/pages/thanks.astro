@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Message received"
+  description="Your message has been received — Daniel will be in touch."
+>
+  <div class="thanks">
+    <div class="thanks__icon" aria-hidden="true">✓</div>
+    <h1 class="thanks__title">Message received</h1>
+    <p class="thanks__body">
+      Thanks for getting in touch. I'll read your message and respond if
+      there's a good fit — usually within a few days.
+    </p>
+    <a href="/blog" class="thanks__cta">Read the blog while you wait →</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .thanks {
+    max-width: 32rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+    text-align: center;
+  }
+
+  .thanks__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  .thanks__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    margin: 0 0 1rem;
+  }
+
+  .thanks__body {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin: 0 0 2rem;
+  }
+
+  .thanks__cta {
+    display: inline-block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .thanks__cta:hover {
+    color: var(--color-primary-hover);
+  }
+</style>

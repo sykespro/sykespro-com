@@ -1,5 +1,6 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
+export const SITE_TITLE = 'Sykespro';
+export const SITE_DESCRIPTION =
+  'Patterns, trade-offs, and real-world experience at the intersection of AI, architecture, and systems design.';
 
-export const SITE_TITLE = 'Astro Blog';
-export const SITE_DESCRIPTION = 'Welcome to my website!';
+export const SOCIAL_GITHUB = 'https://github.com/sykespro';
+export const SOCIAL_LINKEDIN = 'https://linkedin.com/in/danielsykes';
